@@ -24,7 +24,7 @@ function setupDivs() {
   var loc = path.getPointAtLength(0 * pathLength);
 
   for (let i = 0; i < arrColors.length; i++) {
-    var loc = path.getPointAtLength((1 / 10) * i * pathLength + 145);
+    var loc = path.getPointAtLength((1 / 10) * i * pathLength + 100);
 
     const circle = document.createElement("div");
     circle.className = "circle";
@@ -46,14 +46,12 @@ function setupDivs() {
         for (let i = 0; i < divArray.length; i++) {
           let newIndex;
           console.log(indexDiff + i);
-          if (indexDiff + i >= 0) {
-            divArray[i + indexDiff].style.top = newArray[i].style.top;
-            divArray[i + indexDiff].style.left = newArray[i].style.left;
-          } else {
-            divArray[divArray.length + indexDiff].style.top =
-              newArray[i].style.top;
-            divArray[divArray.length + indexDiff].style.left =
-              newArray[i].style.left;
+          if (indexDiff + i >= 0 && indexDiff + i < divArray.length) {
+            divArray[i].style.top = newArray[i + indexDiff].style.top;
+            divArray[i].style.left = newArray[i + indexDiff].style.left;
+          } else if (indexDiff + i < 0) {
+            divArray[i].style.top = newArray[i - indexDiff].style.top;
+            divArray[i].style.left = newArray[i - indexDiff].style.left;
           }
         }
       }
