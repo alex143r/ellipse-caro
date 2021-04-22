@@ -1,8 +1,6 @@
 console.log("fuck");
 
-MotionPathPlugin.convertToPath("ellipse");
-
-const arrColors = [
+const florbsArray = [
   "red",
   "blue",
   "green",
@@ -16,15 +14,18 @@ const arrColors = [
 ];
 const divArray = [];
 
+MotionPathPlugin.convertToPath("ellipse");
+
 setupDivs();
+
 function setupDivs() {
   const path = document.querySelector("path");
-  console.log(path.getTotalLength());
-  var pathLength = path.getTotalLength();
-  var loc = path.getPointAtLength(0 * pathLength);
+  const pathLength = path.getTotalLength();
 
-  for (let i = 0; i < arrColors.length; i++) {
-    var loc = path.getPointAtLength((1 / 10) * i * pathLength + 145);
+  for (let i = 0; i < florbsArray.length; i++) {
+    const loc = path.getPointAtLength(
+      (1 / florbsArray.length) * i * pathLength + 145
+    );
 
     const circle = document.createElement("div");
     circle.className = "circle";
@@ -47,13 +48,13 @@ function setupDivs() {
           let newIndex;
           console.log(indexDiff + i);
           if (indexDiff + i >= 0) {
-            divArray[i + indexDiff].style.top = newArray[i].style.top;
-            divArray[i + indexDiff].style.left = newArray[i].style.left;
+            divArray[i].style.top = newArray[i + indexDiff].style.top;
+            divArray[i].style.left = newArray[i + indexDiff].style.left;
           } else {
-            divArray[divArray.length + indexDiff].style.top =
-              newArray[i].style.top;
-            divArray[divArray.length + indexDiff].style.left =
-              newArray[i].style.left;
+            divArray[i].style.top =
+              newArray[divArray.length + indexDiff].style.top;
+            divArray[i].style.left =
+              newArray[divArray.length + indexDiff].style.left;
           }
         }
       }
